@@ -1,3 +1,4 @@
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const path = require('path')
 
 const isDevelopmentMode = process.env.NODE_ENV === 'development'
@@ -9,6 +10,9 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: "bundle.js"
   },
+  plugins: [
+    isDevelopmentMode && new ReactRefreshWebpackPlugin(),
+  ].filter(Boolean),
   resolve: {
     extensions: [".js", ".jsx"]
   },
@@ -17,8 +21,19 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: ['babel-loader']
+        use: {
+          loader: 'babel-loader',
+          options: {
+            plugins: [
+              isDevelopmentMode && require.resolve('react-refresh/babel'),
+            ].filter(Boolean)
+          }
+        }
       }
     ]
+  },
+  devServer: {
+    contentBase: path.resolve(__dirname, 'dist'),
+    hot: true
   }
 }
