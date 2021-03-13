@@ -1,5 +1,5 @@
-import Button from './components/Button'
-import GlobalStyles from './styles/global'
+import Button from '@/components/Button'
+import GlobalStyles from '@/styles/global'
 
 function MyApp() {
   return (

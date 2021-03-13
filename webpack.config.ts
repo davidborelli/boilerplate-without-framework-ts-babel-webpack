@@ -1,6 +1,7 @@
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin'
 import path from 'path'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
+import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin'
 
 const isDevelopmentMode = process.env.NODE_ENV === 'development'
 
@@ -19,6 +20,7 @@ module.exports = {
     isDevelopmentMode && new ReactRefreshWebpackPlugin()
   ].filter(Boolean),
   resolve: {
+    plugins: [new TsconfigPathsPlugin()],
     extensions: ['.js', '.jsx', '.ts', '.tsx']
   },
   module: {
