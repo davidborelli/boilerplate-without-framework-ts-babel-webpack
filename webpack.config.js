@@ -1,5 +1,6 @@
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const isDevelopmentMode = process.env.NODE_ENV === 'development'
 
@@ -11,6 +12,7 @@ module.exports = {
     filename: "bundle.js"
   },
   plugins: [
+    new HtmlWebpackPlugin({ template: path.resolve(__dirname, 'public', 'index.html') }),
     isDevelopmentMode && new ReactRefreshWebpackPlugin(),
   ].filter(Boolean),
   resolve: {
