@@ -8,5 +8,14 @@ module.exports = {
         runtime: 'automatic'
       }
     ]
+  ],
+  plugins: [
+    [
+      'babel-plugin-styled-components',
+      {
+        displayName: true,
+        pure: true
+      }
+    ]
   ]
 }
